@@ -68,7 +68,7 @@ And factories which accept a `void**` can be passed a `std::out_ptr<void*>(ptr)`
 The examples so far have used `unique_ptr` for simplicity, but compatibility extends to other standard library and user-defined pointer types:
 
 | Pointer Type              | `std::out_ptr` supported?                                                                | `std::inout_ptr` supported?                         |
-|---------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| ------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | `std::unique_ptr`         | Yes                                                                                      | Yes                                                 |
 | `std::shared_ptr`         | Yes, but if using a custom deleter this must be provided manually                        | No                                                  |
 | `T*`                      | Yes                                                                                      | Yes                                                 |
@@ -76,5 +76,5 @@ The examples so far have used `unique_ptr` for simplicity, but compatibility ext
 
 There are also some caveats to know about:
 
-* The pointers should be created inside the function call. You _can_ write `auto o_ptr = std::out_ptr(ptr)` but `ptr` won't be updated until `o_ptr` is destroyed.
-* **You define the contract**. `std::out_ptr` and `std::inout_ptr` can't check whether they are being used for "true" out-ptr and inout-ptr semantics. You decide that by naming the type.
+- The pointers should be created inside the function call. You _can_ write `auto o_ptr = std::out_ptr(ptr)` but `ptr` won't be updated until `o_ptr` is destroyed.
+- **You define the contract**. `std::out_ptr` and `std::inout_ptr` can't check whether they are being used for "true" out-ptr and inout-ptr semantics. You decide that by naming the type.
